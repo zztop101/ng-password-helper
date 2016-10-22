@@ -8,8 +8,9 @@ import { EzPasswordValidatorDirective } from './ez-password-validator.directive'
     CommonModule
   ],
   exports: [
-    EzPasswordHelperComponent
+    EzPasswordHelperComponent,
+    EzPasswordValidatorDirective
   ],
-  declarations: [EzPasswordHelperComponent, EzPasswordValidatorDirective, EzPasswordValidatorDirective]
+  declarations: [EzPasswordHelperComponent, EzPasswordValidatorDirective]
 })
 export class EzPasswordHelperModule { }
