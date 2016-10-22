@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from "rxjs/Rx";
 
 @Injectable()
 export class EzPasswordRulesService {
 
   rules: any[];
+  keys: number[] = [4, 5, 1, 3, 2];
+  private data: BehaviorSubject<number[]> = new BehaviorSubject(this.keys);
 
   constructor() {
     this.rules = new Array();
@@ -20,6 +24,20 @@ export class EzPasswordRulesService {
     this.rules[2].valid = rulevalid;
     this.rules[3].valid = rulevalid;
     this.rules[4].valid = rulevalid;
+  }
+
+  public setKey(i: number, val: number): void {
+    console.log('setKey');
+    this.keys[i] = val;
+    this.data.next(this.keys);
+  }
+
+  public getData(): Observable<number[]> {
+    return this.data.asObservable();
+  }
+
+  public getKeys(): number[] {
+    return this.keys;
   }
 
   getRules() {
