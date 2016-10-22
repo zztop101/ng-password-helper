@@ -26,6 +26,19 @@ export class EzPasswordRulesService {
     return this.rules;
   }
 
+  validPassword(value) {
+    let validCntr = 0;
+    this.rules.forEach(
+      function (element) {
+        element.valid = element.regex.test(value);
+        if (element.valid) {
+            validCntr++;
+        }
+      }
+    );
+    return validCntr === this.rules.length;
+  }
+
 }
 
 
