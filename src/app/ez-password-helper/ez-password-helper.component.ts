@@ -10,7 +10,6 @@ export class EzPasswordHelperComponent {
 
   rules: any[];
 
-  @Input() password: string;
   @Output() close: EventEmitter < boolean > = new EventEmitter < boolean > ();
 
   constructor(private ezPasswordRulesService: EzPasswordRulesService) {
