@@ -19,7 +19,7 @@ export class EzPasswordValidatorDirective implements Validator {
         let valid = false;
         let value = control.value;
 
-        if (value && this.ezPasswordRulesService.validPassword(value)) {
+        if (this.ezPasswordRulesService.validPassword(value)) {
           if (control.errors) {
             delete control.errors['ezInvalid'];
           }

@@ -30,9 +30,13 @@ export class EzPasswordRulesService {
     let validCntr = 0;
     this.rules.forEach(
       function (element) {
-        element.valid = element.regex.test(value);
-        if (element.valid) {
+        if (value) {
+          element.valid = element.regex.test(value);
+          if (element.valid) {
             validCntr++;
+          }
+        } else {
+          element.valid = false;
         }
       }
     );
