@@ -1,5 +1,6 @@
-import {Component, Output, Input, EventEmitter } from '@angular/core';
+import {Component, Output, EventEmitter } from '@angular/core';
 import {EzPasswordRulesService} from './ez-password-rules.service';
+import {Rule} from './rule';
 
 @Component({
   selector: 'app-ez-password-helper',
@@ -8,10 +9,12 @@ import {EzPasswordRulesService} from './ez-password-rules.service';
 })
 export class EzPasswordHelperComponent {
 
-  rules: any[];
-
+  public rules: Rule[];
   @Output() close: EventEmitter < boolean > = new EventEmitter < boolean > ();
 
+  /**
+   * @param  {EzPasswordRulesService} privateezPasswordRulesService
+   */
   constructor(private ezPasswordRulesService: EzPasswordRulesService) {
 
     ezPasswordRulesService.getRulesData().subscribe(rulesdata => {
