@@ -10,7 +10,6 @@ import {Rule} from './rule';
 export class EzPasswordHelperComponent {
 
   public rules: Rule[];
-  @Output() close: EventEmitter < boolean > = new EventEmitter < boolean > ();
 
   /**
    * @param  {EzPasswordRulesService} privateezPasswordRulesService
@@ -19,10 +18,6 @@ export class EzPasswordHelperComponent {
     ezPasswordRulesService.getRules().subscribe(rulesdata => {
       this.rules = rulesdata;
     });
-  }
-
-  onClickClose() {
-    this.close.emit(true);
   }
 
 }
