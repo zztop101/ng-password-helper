@@ -16,13 +16,9 @@ export class EzPasswordHelperComponent {
    * @param  {EzPasswordRulesService} privateezPasswordRulesService
    */
   constructor(private ezPasswordRulesService: EzPasswordRulesService) {
-
-    ezPasswordRulesService.getRulesData().subscribe(rulesdata => {
+    ezPasswordRulesService.getRules().subscribe(rulesdata => {
       this.rules = rulesdata;
     });
-
-    this.rules = this.ezPasswordRulesService.getRules();
-
   }
 
   onClickClose() {

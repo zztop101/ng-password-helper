@@ -13,8 +13,7 @@ export class EzPasswordRulesService {
   public RULE_UPPER: Rule = {desc: 'At least one upper case character', regex: new RegExp('.*[A-Z].*'), valid: false};
   public RULE_LOWER: Rule = {desc: 'At least one lower case character', regex: new RegExp('.*[a-z].*'), valid: false};
   public RULE_DIGIT: Rule = {desc: 'At least one digit', regex: new RegExp('.*[0-9].*'), valid: false};
-  public RULE_SPECIAL: Rule = {desc: 'At least one special character',  regex: new RegExp('.*[!@#$%^&+=].*'),  valid: false }
-
+  public RULE_SPECIAL: Rule = {desc: 'At least one special character',  regex: new RegExp('.*[!@#$%^&+=].*'),  valid: false };
 
   /**
    * set up the default rules, can be overriden by the application
@@ -28,16 +27,15 @@ export class EzPasswordRulesService {
     this.rules.push(this.RULE_SPECIAL);
   }
 
-  public getRulesData(): Observable<any[]> {
+  /**
+   * get rules as observable
+   */
+  public getRules(): Observable<any[]> {
     return this.rulesdata.asObservable();
   }
 
-  public getRules() {
-    return this.rules;
-  }
-
   /**
-   * Override the default rules.
+   * Override the default rules, with application defined rules.
    *
    * @param  {Rule[]} rules
    */
