@@ -9,11 +9,16 @@ export class EzPasswordRulesService {
   private rules: Rule[] = new Array();
   private rulesdata: BehaviorSubject<Rule[]> = new BehaviorSubject(this.rules);
 
-  public RULE_LENGTH: Rule = {desc: 'At least 8 and no more than 32 characters', regex: new RegExp('^.{8,32}$'), valid: false };
-  public RULE_UPPER: Rule = {desc: 'At least one upper case character', regex: new RegExp('.*[A-Z].*'), valid: false};
-  public RULE_LOWER: Rule = {desc: 'At least one lower case character', regex: new RegExp('.*[a-z].*'), valid: false};
-  public RULE_DIGIT: Rule = {desc: 'At least one digit', regex: new RegExp('.*[0-9].*'), valid: false};
-  public RULE_SPECIAL: Rule = {desc: 'At least one special character',  regex: new RegExp('.*[!@#$%^&+=].*'),  valid: false };
+  public RULE_LENGTH: Rule = {desc: 'At least 8 and no more than 32 characters',
+    regex: new RegExp('^.{8,32}$'), valid: false };
+  public RULE_UPPER: Rule = {desc: 'At least one upper case character',
+    regex: new RegExp('.*[A-Z].*'), valid: false};
+  public RULE_LOWER: Rule = {desc: 'At least one lower case character',
+    regex: new RegExp('.*[a-z].*'), valid: false};
+  public RULE_DIGIT: Rule = {desc: 'At least one digit',
+    regex: new RegExp('.*[0-9].*'), valid: false};
+  public RULE_SPECIAL: Rule = {desc: 'At least one of these special characters: ! @ # $ % ^ & *',
+    regex: new RegExp('.*[\\*\\!@#$%^&+=].*'),  valid: false };
 
   /**
    * set up the default rules, can be overriden by the application
