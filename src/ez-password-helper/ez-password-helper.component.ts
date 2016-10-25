@@ -1,9 +1,9 @@
-import {Component, Output, EventEmitter } from '@angular/core';
+import {Component} from '@angular/core';
 import {EzPasswordRulesService} from './ez-password-rules.service';
 import {Rule} from './rule';
 
 @Component({
-  selector: 'app-ez-password-helper',
+  selector: 'ez-password-helper',
   templateUrl: './ez-password-helper.component.html',
   styleUrls: ['./ez-password-helper.component.css'],
 })
