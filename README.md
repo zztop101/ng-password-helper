@@ -1,31 +1,109 @@
 # EzPasswordHelper
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
+## Introduction
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+"AngularPasswordRules" is an Angular 2 component that helps users enter a password 
+that matches the sites password policy. Useful on the change password screen. Some default
+rules have been provided or can easily customise.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+```
+npm install ng-password-helper
+```
 
-## Build
+## Demo
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+link coming soon ! 
 
-## Running unit tests
+## Usage
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+In app.module.ts
 
-## Running end-to-end tests
+```
+import { EzPasswordHelperModule, EzPasswordRulesService} from 'ez-password-helper';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+@NgModule({
+  declarations: [
+    AppComponent,
+    FirstErrorPipe,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    EzPasswordHelperModule,
 
-## Deploying to Github Pages
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
 
-Run `ng github-pages:deploy` to deploy to Github Pages.
+  // Add this to the constructor if you want to add your own rules
+  constructor(private ezPasswordRulesService: EzPasswordRulesService) {
+      
+     let rules = new Array();
 
-## Further help
+     // use some default rules
+     rules.push(ezPasswordRulesService.RULE_LENGTH);
+     rules.push(ezPasswordRulesService.RULE_UPPER);
+     rules.push(ezPasswordRulesService.RULE_LOWER);
+     rules.push(ezPasswordRulesService.RULE_DIGIT);
+     rules.push(ezPasswordRulesService.RULE_SPECIAL); 
 
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+     // provide your own rule
+     rules.push({desc: 'At least one special character!!',  regex: new RegExp('.*[!@#$%^&+=-].*'),  valid: false });
+     ezPasswordRulesService.setRules(rules);
+     
+  }
+
+}
+
+```
+
+Then set up your trmplate similar to this, note the attribute on the input box
+and the rules helper at the bottom.
+
+```
+<div class="password-form">
+  <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
+    <div class="section">
+      <p>Please enter and confirm your new login password, and verify your transaction password.
+      </p>
+      <div class="errorContainer" id="mainErrorDiv">
+        <ol></ol>
+      </div>
+      <div class="form">
+        <div class="form-group">
+          <label class="display-label" for="password">New Login Password</label>
+          <!--
+          Add the attribute to the password input box 
+          -->
+          <input autocomplete="off" [(ngModel)]="model.password" class="required mark-required form-control" id="password" name="password"
+            type="password" #password="ngModel" required ezPasswordValidator>
+          <small [hidden]="password.valid || (password.pristine && !f.submitted) || !((password.errors | firstError)==='required')">
+           Password is required
+        </small>
+          <small [hidden]="password.valid || (password.pristine && !f.submitted) || !((password.errors | firstError)==='ezInvalid')">
+           Password is not valid
+        </small>
+        </div>
+        <br>
+        <div class="form-group">
+          <label class="display-label" for="ConfirmPassword">Confirm Password</label>
+          <input autocomplete="off" data-bind="value: ConfirmPassword" id="ConfirmPassword" name="ConfirmPassword" type="password">
+        </div>
+      </div>
+    </div>
+    <br>
+  </form>
+</div>
+
+<!--
+Displays the rules and a cross or tick as the rule as been met
+overrid css to change look and feel.
+-->
+<ez-password-helper class="password-helper"></ez-password-helper>
+
+```
