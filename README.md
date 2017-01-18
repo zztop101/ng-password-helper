@@ -62,7 +62,7 @@ export class AppModule {
 
 ```
 
-Then set up your trmplate similar to this, note the attribute on the input box
+Then set up your template similar to this, note the attribute on the input box
 and the rules helper at the bottom.
 
 ```
@@ -101,8 +101,8 @@ and the rules helper at the bottom.
 </div>
 
 <!--
-Displays the rules and a cross or tick as the rule as been met
-overrid css to change look and feel.
+Displays the rules and a cross or tick as the rule has met the definition.
+Override css to change look and feel of the helper.
 -->
 <ez-password-helper class="password-helper"></ez-password-helper>
 
