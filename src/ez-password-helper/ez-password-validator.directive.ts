@@ -14,18 +14,7 @@ export class EzPasswordValidatorDirective implements Validator {
     private ezPasswordRulesService: EzPasswordRulesService
   ) { }
 
-  validate(control: AbstractControl): { [key: string]: any } {
-
-        let valid = false;
-        let value = control.value;
-
-        if (this.ezPasswordRulesService.validPassword(value)) {
-          if (control.errors) {
-            delete control.errors['ezInvalid'];
-          }
-          valid = true;
-        }
-
-        return valid ? null : {'ezInvalid': {value}};
-    }
+  public validate(control: AbstractControl): { [key: string]: any } {
+     return this.ezPasswordRulesService.validPassword(control);
+  }
 }

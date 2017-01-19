@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/Rx';
 import {Rule} from './rule';
+import {AbstractControl} from '@angular/forms';
 
 @Injectable()
 export class EzPasswordRulesService {
@@ -54,8 +55,10 @@ export class EzPasswordRulesService {
    * @param  {} value
    * return true or false if all rules criteria has been met.
    */
-  public validPassword(value: string) {
+  public validPassword(control: AbstractControl) {
+    let value = control.value;
     let validCntr = 0;
+    let valid = false;
     this.rules.forEach(
       function (element) {
         if (value) {
@@ -69,9 +72,12 @@ export class EzPasswordRulesService {
       }
     );
     this.rulesdata.next(this.rules);
-    return validCntr === this.rules.length;
+    if (validCntr === this.rules.length) {
+       if (control.errors) {
+            delete control.errors['ezInvalid'];
+       }
+       valid = true;
+    }
+    return valid ? null : {'ezInvalid': {value}};
   }
-
 }
-
-
