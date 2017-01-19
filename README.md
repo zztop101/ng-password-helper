@@ -2,9 +2,9 @@
 
 ## Introduction
 
-"AngularPasswordRules" is an Angular 2 component that helps users enter a password 
-that matches the sites password policy. Useful on the change password screen. Some default
-rules have been provided or can easily customise.
+"AngularPasswordRules" is an Angular 2 component that helps users enter a password
+that matches the sites password policy. Some default rules have been provided or
+ can easily customise.
 
 ## Installation
 
@@ -14,11 +14,11 @@ npm install ng-password-helper
 
 ## Demo
 
-link coming soon !! 
+link coming soon !!
 
 ## Usage
 
-In app.module.ts
+In app.module.ts import the module and customise the rules.
 
 ```
 import { EzPasswordHelperModule, EzPasswordRulesService} from 'ez-password-helper';
@@ -41,7 +41,7 @@ export class AppModule {
 
   // Add this to the constructor if you want to add your own rules
   constructor(private ezPasswordRulesService: EzPasswordRulesService) {
-      
+
      let rules = new Array();
 
      // use some default rules
@@ -49,19 +49,18 @@ export class AppModule {
      rules.push(ezPasswordRulesService.RULE_UPPER);
      rules.push(ezPasswordRulesService.RULE_LOWER);
      rules.push(ezPasswordRulesService.RULE_DIGIT);
-     rules.push(ezPasswordRulesService.RULE_SPECIAL); 
+     rules.push(ezPasswordRulesService.RULE_SPECIAL);
 
      // provide your own rule
      rules.push({desc: 'At least one special character!!',  regex: new RegExp('.*[!@#$%^&+=-].*'),  valid: false });
      ezPasswordRulesService.setRules(rules);
-     
+
   }
 
 }
 
 ```
-
-Then set up your template similar to this, note the attribute on the input box
+For template driven forms add html similar to this. The main part to notice is the attribute on the input box
 and the rules helper at the bottom.
 
 ```
@@ -77,7 +76,7 @@ and the rules helper at the bottom.
         <div class="form-group">
           <label class="display-label" for="password">New Login Password</label>
           <!--
-          Add the attribute to the password input box 
+          Add the attribute to the password input box
           -->
           <input autocomplete="off" [(ngModel)]="model.password" class="required mark-required form-control" id="password" name="password"
             type="password" #password="ngModel" required ezPasswordValidator>
@@ -107,7 +106,7 @@ Override css to change look and feel of the helper.
 
 ```
 
-For Reactive Forms 
+For Reactive Forms
 
 
 ```
@@ -142,3 +141,51 @@ export class AppComponent {
 
 }
 ```
+
+and add html similar to this:
+
+```
+<div class="password-form">
+  <form [formGroup]="passwordForm" novalidate>
+    <div class="section">
+      <p>Reactive Form</p>
+      <div class="form">
+        <div class="form-group">
+          <label class="display-label" for="password">New Login Password</label><br>
+          <input formControlName="newPassword"
+                 autocomplete="off"
+                 class="required mark-required form-control"
+                 id="password"
+                 name="password"
+                 type="password">
+          <small *ngIf="passwordForm.get('newPassword').dirty && passwordForm.get('newPassword').hasError('required')">
+             Password is required
+          </small>
+          <small *ngIf="passwordForm.get('newPassword').dirty && passwordForm.get('newPassword').hasError('ezInvalid')">
+             Password is not valid
+          </small>
+        </div>
+        <br>
+        <div class="form-group">
+          <label class="display-label" for="ConfirmPassword">Confirm Password</label><br>
+          <input formControlName="confirmPassword"
+                 autocomplete="off"
+                 id="ConfirmPassword"
+                 name="ConfirmPassword"
+                 type="password">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<ez-password-helper class="password-helper"></ez-password-helper>
+```
+
+
+## Credit
+
+I orginally got the idea from http://www.computershare.com/au.
+Later, I found a jquery version on npm https://www.npmjs.com/package/passwordruleshelper.
+I swiped the html and css found on the jquery version. Thanks!
+
+
