@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EzPasswordHelperComponent } from './ez-password-helper.component';
+import { NgPasswordHelperComponent } from './ng-password-helper.component';
 
-describe('EzPasswordHelperComponent', () => {
-  let component: EzPasswordHelperComponent;
-  let fixture: ComponentFixture<EzPasswordHelperComponent>;
+describe('NgPasswordHelperComponent', () => {
+  let component: NgPasswordHelperComponent;
+  let fixture: ComponentFixture<NgPasswordHelperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EzPasswordHelperComponent ]
+      declarations: [ NgPasswordHelperComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EzPasswordHelperComponent);
+    fixture = TestBed.createComponent(NgPasswordHelperComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

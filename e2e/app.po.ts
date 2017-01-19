@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class EzPasswordHelperPage {
+export class NgPasswordHelperPage {
   navigateTo() {
     return browser.get('/');
   }

@@ -5,7 +5,7 @@ import {Rule} from './rule';
 import {AbstractControl} from '@angular/forms';
 
 @Injectable()
-export class EzPasswordRulesService {
+export class NgPasswordRulesService {
 
   private rules: Rule[] = new Array();
   private rulesdata: BehaviorSubject<Rule[]> = new BehaviorSubject(this.rules);
@@ -74,10 +74,10 @@ export class EzPasswordRulesService {
     this.rulesdata.next(this.rules);
     if (validCntr === this.rules.length) {
        if (control.errors) {
-            delete control.errors['ezInvalid'];
+            delete control.errors['passwordRulesInvalid'];
        }
        valid = true;
     }
-    return valid ? null : {'ezInvalid': {value}};
+    return valid ? null : {'passwordRulesInvalid': {value}};
   }
 }

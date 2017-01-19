@@ -1,10 +1,10 @@
-import { EzPasswordHelperPage } from './app.po';
+import { NgPasswordHelperPage } from './app.po';
 
-describe('ez-password-helper App', function() {
-  let page: EzPasswordHelperPage;
+describe('ng-password-helper App', function() {
+  let page: NgPasswordHelperPage;
 
   beforeEach(() => {
-    page = new EzPasswordHelperPage();
+    page = new NgPasswordHelperPage();
   });
 
   it('should display message saying app works', () => {

@@ -1,8 +1,8 @@
-# EzPasswordHelper
+# NgPasswordHelper
 
 ## Introduction
 
-"AngularPasswordRules" is an Angular 2 component that helps users enter a password
+"AngularPasswordHelper" is an Angular 2 component that helps users enter a password
 that matches the sites password policy. Some default rules have been provided or
  can easily customise.
 
@@ -21,7 +21,7 @@ link coming soon !!
 In app.module.ts import the module and customise the rules.
 
 ```
-import { EzPasswordHelperModule, EzPasswordRulesService} from 'ez-password-helper';
+import { NgPasswordHelperModule, NgPasswordRulesService} from 'ng-password-helper';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { EzPasswordHelperModule, EzPasswordRulesService} from 'ez-password-helpe
     BrowserModule,
     FormsModule,
     HttpModule,
-    EzPasswordHelperModule
+    NgPasswordHelperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -40,20 +40,20 @@ import { EzPasswordHelperModule, EzPasswordRulesService} from 'ez-password-helpe
 export class AppModule {
 
   // Add this to the constructor if you want to add your own rules
-  constructor(private ezPasswordRulesService: EzPasswordRulesService) {
+  constructor(private ngPasswordRulesService: NgPasswordRulesService) {
 
      let rules = new Array();
 
      // use some default rules
-     rules.push(ezPasswordRulesService.RULE_LENGTH);
-     rules.push(ezPasswordRulesService.RULE_UPPER);
-     rules.push(ezPasswordRulesService.RULE_LOWER);
-     rules.push(ezPasswordRulesService.RULE_DIGIT);
-     rules.push(ezPasswordRulesService.RULE_SPECIAL);
+     rules.push(ngPasswordRulesService.RULE_LENGTH);
+     rules.push(ngPasswordRulesService.RULE_UPPER);
+     rules.push(ngPasswordRulesService.RULE_LOWER);
+     rules.push(ngPasswordRulesService.RULE_DIGIT);
+     rules.push(ngPasswordRulesService.RULE_SPECIAL);
 
      // provide your own rule
      rules.push({desc: 'At least one special character!!',  regex: new RegExp('.*[!@#$%^&+=-].*'),  valid: false });
-     ezPasswordRulesService.setRules(rules);
+     ngPasswordRulesService.setRules(rules);
 
   }
 
@@ -79,11 +79,11 @@ and the rules helper at the bottom.
           Add the attribute to the password input box
           -->
           <input autocomplete="off" [(ngModel)]="model.password" class="required mark-required form-control" id="password" name="password"
-            type="password" #password="ngModel" required ezPasswordValidator>
+            type="password" #password="ngModel" required ngPasswordValidator>
           <small [hidden]="password.valid || (password.pristine && !f.submitted) || !((password.errors | firstError)==='required')">
            Password is required
         </small>
-          <small [hidden]="password.valid || (password.pristine && !f.submitted) || !((password.errors | firstError)==='ezInvalid')">
+          <small [hidden]="password.valid || (password.pristine && !f.submitted) || !((password.errors | firstError)==='passwordRulesInvalid')">
            Password is not valid
         </small>
         </div>
@@ -102,7 +102,7 @@ and the rules helper at the bottom.
 Displays the rules and a cross or tick as the rule has met the definition.
 Override css to change look and feel of the helper.
 -->
-<ez-password-helper class="password-helper"></ez-password-helper>
+<ng-password-helper class="password-helper"></ng-password-helper>
 
 ```
 
@@ -112,7 +112,7 @@ For Reactive Forms
 ```
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { EzPasswordRulesService } from 'ez-password-helper';
+import { NgPasswordRulesService } from 'ng-password-helper';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -125,7 +125,7 @@ export class AppComponent {
   public passwordForm: any;
   public newPassword: FormControl;
 
-  constructor(public ezPasswordRulesService: EzPasswordRulesService,
+  constructor(public ngPasswordRulesService: NgPasswordRulesService,
               public formBuilder: FormBuilder) {
 
     this.newPassword = formBuilder.control('', [this.passwordHelper.bind(this), Validators.required]);
@@ -136,7 +136,7 @@ export class AppComponent {
   }
 
   public passwordHelper(control: FormControl) {
-      return this.ezPasswordRulesService.validPassword(control);
+      return this.ngPasswordRulesService.validPassword(control);
   }
 
 }
@@ -161,7 +161,7 @@ and add html similar to this:
           <small *ngIf="passwordForm.get('newPassword').dirty && passwordForm.get('newPassword').hasError('required')">
              Password is required
           </small>
-          <small *ngIf="passwordForm.get('newPassword').dirty && passwordForm.get('newPassword').hasError('ezInvalid')">
+          <small *ngIf="passwordForm.get('newPassword').dirty && passwordForm.get('newPassword').hasError('passwordRulesInvalid')">
              Password is not valid
           </small>
         </div>
@@ -178,7 +178,7 @@ and add html similar to this:
     </div>
   </form>
 </div>
-<ez-password-helper class="password-helper"></ez-password-helper>
+<ng-password-helper class="password-helper"></ng-password-helper>
 ```
 
 
