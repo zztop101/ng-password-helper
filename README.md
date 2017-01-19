@@ -32,8 +32,7 @@ import { EzPasswordHelperModule, EzPasswordRulesService} from 'ez-password-helpe
     BrowserModule,
     FormsModule,
     HttpModule,
-    EzPasswordHelperModule,
-
+    EzPasswordHelperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
