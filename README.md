@@ -14,7 +14,7 @@ npm install ng-password-helper
 
 ## Demo
 
-link coming soon ! 
+link coming soon !! 
 
 ## Usage
 
@@ -106,4 +106,40 @@ Override css to change look and feel of the helper.
 -->
 <ez-password-helper class="password-helper"></ez-password-helper>
 
+```
+
+For Reactive Forms 
+
+
+```
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { EzPasswordRulesService } from 'ez-password-helper';
+import { FormControl } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  public passwordForm: any;
+  public newPassword: FormControl;
+
+  constructor(public ezPasswordRulesService: EzPasswordRulesService,
+              public formBuilder: FormBuilder) {
+
+    this.newPassword = formBuilder.control('', [this.passwordHelper.bind(this), Validators.required]);
+    this.passwordForm = this.formBuilder.group({
+      'newPassword': this.newPassword,
+      'confirmPassword': ['', [Validators.required]]
+    });
+  }
+
+  public passwordHelper(control: FormControl) {
+      return this.ezPasswordRulesService.validPassword(control);
+  }
+
+}
 ```
