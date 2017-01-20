@@ -1,6 +1,5 @@
 # NgPasswordHelper
 
-## Introduction
 
 "AngularPasswordHelper" is an Angular 2 component that helps users enter a password
 that matches the sites password policy. Some default rules have been provided or
@@ -187,5 +186,3 @@ and add html similar to this:
 I orginally got the idea from http://www.computershare.com/au.
 Later, I found a jquery version on npm https://www.npmjs.com/package/passwordruleshelper.
 I swiped the html and css found on the jquery version. Thanks!
-
-
