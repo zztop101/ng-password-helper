@@ -8,12 +8,16 @@ that matches the sites password policy. Some default rules have been provided or
 ## Installation
 
 ```
-npm install ng-password-helper
+npm install ng-password-helper --save
 ```
 
 ## Demo
 
 link coming soon !!
+
+## Source
+
+https://bitbucket.org/terrycms/ng-password-helper
 
 ## Usage
 

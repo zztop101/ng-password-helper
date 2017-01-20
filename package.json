@@ -1,10 +1,7 @@
 {
   "name": "ng-password-helper",
-  "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "https://terrycms@bitbucket.org/terrycms/ng-password-helper.git"
-  },
+  "version": "1.0.2",
+  "homepage": "https://terrycms@bitbucket.org/terrycms/ng-password-helper.git",
   "keywords": [
     "angular",
     "password",
