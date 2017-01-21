@@ -1,4 +1,18 @@
-export * from './ng-password-helper/ng-password-helper.module';
-export * from './ng-password-helper/ng-password-rules.service';
-export * from './ng-password-helper/ng-password-helper.component';
-export * from './ng-password-helper/ng-password-validator.directive';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgPasswordHelperComponent } from './ng-password-helper.component';
+import { NgPasswordValidatorDirective } from './ng-password-validator.directive';
+import { NgPasswordRulesService } from './ng-password-rules.service';
+
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    NgPasswordHelperComponent,
+    NgPasswordValidatorDirective
+  ],
+  providers: [NgPasswordRulesService],
+  declarations: [NgPasswordHelperComponent, NgPasswordValidatorDirective]
+})
+export class NgPasswordHelperModule { }
