@@ -13,7 +13,7 @@ npm install ng-password-helper --save
 
 ## Demo
 
-(https://cloud.githubusercontent.com/assets/12250486/22202275/7a4aed5e-e1bb-11e6-89fa-1fe14ed2bfc4.gif)
+![image](https://cloud.githubusercontent.com/assets/12250486/22202275/7a4aed5e-e1bb-11e6-89fa-1fe14ed2bfc4.gif)
 
 ## Usage
 
