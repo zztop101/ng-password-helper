@@ -1,0 +1,9 @@
+{
+    "brace_style": "collapse-preserve-inline",
+    "indent_size": 4,
+    "indent_char": " ",
+    "jslint_happy": true,
+    "css": {
+        "indent_size": 2
+    }
+}

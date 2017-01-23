@@ -67,39 +67,23 @@ For template driven forms add html similar to this. The main part to notice is t
 and the rules helper at the bottom.
 
 ```
-<div class="password-form">
-  <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
-    <div class="section">
-      <p>Please enter and confirm your new login password, and verify your transaction password.
-      </p>
-      <div class="errorContainer" id="mainErrorDiv">
-        <ol></ol>
-      </div>
-      <div class="form">
-        <div class="form-group">
-          <label class="display-label" for="password">New Login Password</label>
-          <!--
-          Add the attribute to the password input box
-          -->
-          <input autocomplete="off" [(ngModel)]="model.password" class="required mark-required form-control" id="password" name="password"
-            type="password" #password="ngModel" required ngPasswordValidator>
-          <small [hidden]="password.valid || (password.pristine && !f.submitted) || !((password.errors | firstError)==='required')">
-           Password is required
-        </small>
-          <small [hidden]="password.valid || (password.pristine && !f.submitted) || !((password.errors | firstError)==='passwordRulesInvalid')">
-           Password is not valid
-        </small>
-        </div>
-        <br>
-        <div class="form-group">
-          <label class="display-label" for="ConfirmPassword">Confirm Password</label>
-          <input autocomplete="off" data-bind="value: ConfirmPassword" id="ConfirmPassword" name="ConfirmPassword" type="password">
-        </div>
-      </div>
+<section role='main'>
+    <div class='container col-sm-12'>
+        <form class='col-sm-5 col-sm-offset-4' autocomplete='off' #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
+            <br>
+            <fieldset>
+                <div class="form-group">
+                    <label for="passwordField">Password</label>
+                    <input id="password" name="password" autocomplete="off" [(ngModel)]="model.password" #password="ngModel" class="required mark-required form-control" type="password" required ngPasswordValidator>
+                    <span [hidden]="password.valid || !((password.errors | firstError)==='required')" class="error">Password is required</span>
+                    <span [hidden]="password.valid || !((password.errors | firstError)==='passwordRulesInvalid')" class="error">Password is not valid</span>
+                    <span [hidden]="!password.valid" class="ok">Password is valid</span>
+                </div>
+            </fieldset>
+            <ng-password-helper class="password-helper"></ng-password-helper>
+        </form>
     </div>
-    <br>
-  </form>
-</div>
+</section>
 
 <!--
 Displays the rules and a cross or tick as the rule has met the definition.
@@ -133,8 +117,7 @@ export class AppComponent {
 
     this.newPassword = formBuilder.control('', [this.passwordHelper.bind(this), Validators.required]);
     this.passwordForm = this.formBuilder.group({
-      'newPassword': this.newPassword,
-      'confirmPassword': ['', [Validators.required]]
+      'newPassword': this.newPassword
     });
   }
 
@@ -148,42 +131,23 @@ export class AppComponent {
 and add html similar to this:
 
 ```
-<div class="password-form">
-  <form [formGroup]="passwordForm" novalidate>
-    <div class="section">
-      <p>Reactive Form</p>
-      <div class="form">
-        <div class="form-group">
-          <label class="display-label" for="password">New Login Password</label><br>
-          <input formControlName="newPassword"
-                 autocomplete="off"
-                 class="required mark-required form-control"
-                 id="password"
-                 name="password"
-                 type="password">
-          <small *ngIf="passwordForm.get('newPassword').dirty && passwordForm.get('newPassword').hasError('required')">
-             Password is required
-          </small>
-          <small *ngIf="passwordForm.get('newPassword').dirty && passwordForm.get('newPassword').hasError('passwordRulesInvalid')">
-             Password is not valid
-          </small>
-        </div>
-        <br>
-        <div class="form-group">
-          <label class="display-label" for="ConfirmPassword">Confirm Password</label><br>
-          <input formControlName="confirmPassword"
-                 autocomplete="off"
-                 id="ConfirmPassword"
-                 name="ConfirmPassword"
-                 type="password">
-        </div>
-      </div>
+<section role='main'>
+    <div class='container col-sm-12'>
+        <form class='col-sm-5 col-sm-offset-4' autocomplete='off' [formGroup]="passwordForm" novalidate (ngSubmit)="save(f.value, f.valid)">
+            <br>
+            <fieldset>
+                <div class="form-group">
+                    <label for="passwordField">Password</label>
+                    <input id="password" name="password" autocomplete="off" class="required mark-required form-control" type="password" formControlName="newPassword">
+                    <span *ngIf="passwordForm.get('newPassword').hasError('passwordRulesInvalid')" class="error">Password is not valid</span>
+                    <span *ngIf="passwordForm.get('newPassword').valid" class="ok">Password is valid</span>
+                </div>
+            </fieldset>
+            <ng-password-helper class="password-helper"></ng-password-helper>
+        </form>
     </div>
-  </form>
-</div>
-<ng-password-helper class="password-helper"></ng-password-helper>
+</section>
 ```
-
 
 ## Credit
 
