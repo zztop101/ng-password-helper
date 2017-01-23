@@ -13,11 +13,7 @@ npm install ng-password-helper --save
 
 ## Demo
 
-link coming soon !!
-
-## Source
-
-https://bitbucket.org/terrycms/ng-password-helper
+(https://cloud.githubusercontent.com/assets/12250486/22202275/7a4aed5e-e1bb-11e6-89fa-1fe14ed2bfc4.gif)
 
 ## Usage
 
