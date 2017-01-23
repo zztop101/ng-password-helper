@@ -147,6 +147,6 @@ and add html similar to this:
 
 ## Credit
 
-I orginally got the idea from https://www.linkmarketservices.com.au.
+I orginally got the idea from https://www.linkmarketservices.com.au when I was changing my password.
 Later, I found a jquery version on npm https://www.npmjs.com/package/passwordruleshelper.
 I swiped the html and css found on the jquery version. Thanks!
