@@ -8,7 +8,11 @@ that matches the sites password policy. Some default rules have been provided or
 ## Installation
 
 ```
-npm install ng-password-helper --save
+For latest (including Angular 4) :
+npm install ng-password-helper@latest --save
+
+For angular 2:
+npm install ng-password-helper@1.0.4 --save
 ```
 
 ## Demo
@@ -76,16 +80,14 @@ and the rules helper at the bottom.
                     <span [hidden]="!password.valid" class="ok">Password is valid</span>
                 </div>
             </fieldset>
+            <!--
+             Displays the rules and a cross or tick as the rule has met the definition.
+             Override css to change look and feel of the helper.
+            -->
             <ng-password-helper class="password-helper"></ng-password-helper>
         </form>
     </div>
 </section>
-
-<!--
-Displays the rules and a cross or tick as the rule has met the definition.
-Override css to change look and feel of the helper.
--->
-<ng-password-helper class="password-helper"></ng-password-helper>
 
 ```
 
